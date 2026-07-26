@@ -1,0 +1,21 @@
+:root{
+  --primary:#F97316;
+  --primary-hover:#EA580C;
+
+  --sidebar:#0F2343;
+  --sidebar-hover:#1A3158;
+
+  --background:#F8FAFC;
+  --surface:#FFFFFF;
+
+  --text:#0F172A;
+  --text-light:#64748B;
+
+  --border:#E2E8F0;
+
+  --success:#22C55E;
+  --danger:#EF4444;
+
+  --radius:12px;
+  --shadow:0 2px 10px rgba(0,0,0,.08);
+}

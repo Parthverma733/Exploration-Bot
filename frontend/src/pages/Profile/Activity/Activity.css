@@ -1,0 +1,60 @@
+.activity-section{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:30px;
+}
+
+.activity-section h2{
+    font-size:24px;
+    margin-bottom:25px;
+}
+
+.activity-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.activity-item{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    padding:16px;
+
+    border:1px solid #EEF2F7;
+    border-radius:12px;
+
+    transition:.2s;
+}
+
+.activity-item:hover{
+    background:#F8FAFC;
+}
+
+.activity-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#EFF6FF;
+    color:var(--primary);
+
+    border-radius:12px;
+
+    font-size:20px;
+}
+
+.activity-info h4{
+    font-size:16px;
+    margin-bottom:5px;
+}
+
+.activity-info p{
+    color:var(--text-light);
+    font-size:14px;
+}

@@ -37,7 +37,7 @@ class AccountController extends Controller
 
         return response()->json([
             'status' => 200,
-            'errors' => 'User registerd successfully',
+            'message' => 'User registerd successfully',
         ], 200);
 
     }

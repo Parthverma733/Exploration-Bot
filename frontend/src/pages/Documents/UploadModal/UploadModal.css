@@ -1,0 +1,132 @@
+.upload-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+.upload-modal{
+    width:520px;
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:28px;
+}
+
+.upload-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.upload-header h2{
+    font-size:24px;
+}
+
+.upload-header button{
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:22px;
+}
+
+.upload-box{
+    height:240px;
+
+    border:2px dashed #CBD5E1;
+    border-radius:16px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.upload-box:hover{
+    border-color:var(--primary);
+    background:#FFF7ED;
+}
+
+.upload-box svg{
+    font-size:56px;
+    color:var(--primary);
+
+    margin-bottom:15px;
+}
+
+.upload-box h3{
+    font-size:20px;
+}
+
+.upload-box p{
+    color:var(--text-light);
+    margin-top:8px;
+}
+
+.selected-file{
+    margin-top:20px;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    background:#F8FAFC;
+
+    color:var(--text);
+}
+
+.upload-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+
+    margin-top:25px;
+}
+
+.cancel-btn{
+    padding:12px 22px;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.upload-btn{
+    padding:12px 22px;
+
+    background:var(--primary);
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.upload-btn:hover{
+    background:var(--primary-hover);
+}
+
+
+.upload-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

@@ -1,0 +1,80 @@
+.account-settings{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:30px;
+}
+
+.account-settings h2{
+    font-size:24px;
+    margin-bottom:24px;
+}
+
+.account-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.account-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.account-group label{
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.account-group select{
+    height:48px;
+    padding:0 16px;
+
+    border:1px solid var(--border);
+    border-radius:10px;
+
+    font-size:15px;
+    background:#fff;
+
+    outline:none;
+}
+
+.account-group select:focus{
+    border-color:var(--primary);
+}
+
+.save-account-btn{
+    margin-top:30px;
+
+    padding:12px 24px;
+
+    background:var(--primary);
+    color:#fff;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.save-account-btn:hover{
+    background:var(--primary-hover);
+}
+
+@media(max-width:768px){
+
+    .account-grid{
+        grid-template-columns:1fr;
+    }
+
+    .save-account-btn{
+        width:100%;
+    }
+
+}

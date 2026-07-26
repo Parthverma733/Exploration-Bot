@@ -1,0 +1,85 @@
+.document-table {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #F8FAFC;
+}
+
+th {
+    padding: 18px;
+    text-align: left;
+    font-size: 15px;
+    color: var(--text);
+}
+
+td {
+    padding: 18px;
+    border-top: 1px solid var(--border);
+}
+
+.doc-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pdf-icon {
+    color: #E53935;
+    font-size: 22px;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.processed {
+    background: #DCFCE7;
+    color: #166534;
+}
+
+.processing {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #F1F5F9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.actions button:hover {
+    background: #E2E8F0;
+}
+
+.delete-btn {
+    color: #DC2626;
+}
