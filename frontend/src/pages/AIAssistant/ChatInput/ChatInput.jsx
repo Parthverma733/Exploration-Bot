@@ -1,5 +1,4 @@
-import "./ChatInput.css";
-import { FiPaperclip, FiSend, FiMic } from "react-icons/fi";
+import { FiPaperclip, FiSend } from "react-icons/fi";
 import { createChatSession, sendMessage } from "../../../api/chat";
 import toast from "react-hot-toast";
 import { useRef, useState } from "react";
@@ -56,10 +55,20 @@ const ChatInput = ({
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
   return (
-    <div className="chat-input-container">
-      <div className="chat-input-box">
-        <button className="icon-btn">
+    <div className="border-t border-border bg-white px-4 py-5 md:px-8">
+      <div className="flex items-end gap-3 rounded-2xl border border-border bg-background px-4 py-3">
+        <button
+          type="button"
+          className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[10px] border-0 bg-transparent text-xl text-text-light transition-colors duration-200 hover:bg-slate-200"
+        >
           <FiPaperclip />
         </button>
 
@@ -69,9 +78,16 @@ const ChatInput = ({
           value={message}
           rows={1}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          className="max-h-[180px] min-h-7 flex-1 resize-none overflow-y-auto border-0 bg-transparent text-[15px] leading-relaxed"
         />
 
-        <button className="send-btn" onClick={handleSend} disabled={sending}>
+        <button
+          type="button"
+          className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl border-0 bg-primary text-xl text-white transition-colors duration-200 hover:bg-primary-hover disabled:opacity-60"
+          onClick={handleSend}
+          disabled={sending}
+        >
           <FiSend />
         </button>
       </div>

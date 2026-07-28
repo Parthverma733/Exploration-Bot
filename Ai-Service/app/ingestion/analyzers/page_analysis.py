@@ -13,3 +13,4 @@ class PageAnalysis:
 
     text_length: int
     image_count: int
+    table_count: int

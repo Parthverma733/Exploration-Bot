@@ -1,4 +1,3 @@
-import "./UploadModal.css";
 import { FiUploadCloud, FiX } from "react-icons/fi";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -48,37 +47,44 @@ const UploadModal = ({ onClose, refreshDocuments }) => {
   };
 
   return (
-    <div className="upload-overlay">
-      <div className="upload-modal">
-        <div className="upload-header">
-          <h2>Upload Document</h2>
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/45 p-4">
+      <div className="w-full max-w-[520px] rounded-[18px] bg-white p-6 md:p-7">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl">Upload Document</h2>
 
-          <button onClick={onClose}>
+          <button type="button" className="border-0 bg-transparent text-[22px]" onClick={onClose}>
             <FiX />
           </button>
         </div>
 
-        <label className="upload-box">
-          <FiUploadCloud />
+        <label className="flex h-[240px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 transition-colors duration-200 hover:border-primary hover:bg-orange-50">
+          <FiUploadCloud className="mb-4 text-[56px] text-primary" />
 
-          <h3>Drag & Drop PDF</h3>
+          <h3 className="text-xl">Drag & Drop PDF</h3>
 
-          <p>or click to browse</p>
+          <p className="mt-2 text-text-light">or click to browse</p>
 
           <input type="file" accept=".pdf" hidden onChange={handleFileChange} />
         </label>
 
         {selectedFile && (
-          <div className="selected-file">{selectedFile.name}</div>
+          <div className="mt-5 rounded-[10px] bg-background p-3.5 text-text">
+            {selectedFile.name}
+          </div>
         )}
 
-        <div className="upload-actions">
-          <button className="cancel-btn" onClick={onClose}>
+        <div className="mt-6 flex flex-col-reverse justify-end gap-3 sm:flex-row">
+          <button
+            type="button"
+            className="rounded-[10px] border border-border bg-white px-[22px] py-3"
+            onClick={onClose}
+          >
             Cancel
           </button>
 
           <button
-            className="upload-btn"
+            type="button"
+            className="rounded-[10px] border-0 bg-primary px-[22px] py-3 text-white hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
             onClick={handleUpload}
             disabled={!selectedFile}
           >

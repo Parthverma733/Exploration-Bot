@@ -1,5 +1,3 @@
-import "./AIAssistant.css";
-
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
@@ -32,7 +30,7 @@ const AIAssistant = () => {
   }, []);
 
   return (
-    <div className="assistant-page">
+    <div className="mx-4 mb-4 grid h-[calc(100vh-90px)] min-h-[480px] grid-cols-1 overflow-hidden rounded-xl border border-gray-200 bg-background lg:grid-cols-[280px_1fr]">
       <ChatSidebar
         sessions={sessions}
         activeSession={activeSession}

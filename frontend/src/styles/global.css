@@ -1,37 +1,60 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-@import "./variables.css";
-@import "./theme.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@theme {
+  --color-primary: #f97316;
+  --color-primary-hover: #ea580c;
+  --color-sidebar: #0f2343;
+  --color-sidebar-hover: #1a3158;
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-light: #64748b;
+  --color-border: #e2e8f0;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --radius-card: 12px;
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.08);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
-body{
-    font-family:"Inter",sans-serif;
+@keyframes confirm-dialog-fade {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
-}
+@layer base {
+  * {
+    @apply box-border m-0 p-0;
+  }
 
-button{
-    cursor:pointer;
-    border:none;
-    font-family:inherit;
-}
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
 
-input,
-select,
-textarea{
-    outline:none;
-    font-family:inherit;
-}
+  a {
+    @apply no-underline text-inherit;
+  }
 
-img{
-    max-width:100%;
-    display:block;
+  button {
+    @apply cursor-pointer border-0 font-[inherit];
+  }
+
+  input,
+  select,
+  textarea {
+    @apply outline-none font-[inherit];
+  }
+
+  img {
+    @apply max-w-full block;
+  }
 }

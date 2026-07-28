@@ -1,4 +1,3 @@
-import "./Activity.css";
 import {
   FiLogIn,
   FiUpload,
@@ -31,29 +30,26 @@ const activities = [
 
 const Activity = () => {
   return (
-    <div className="activity-section">
+    <div className="rounded-2xl border border-border bg-white p-6 md:p-8">
+      <h2 className="mb-6 text-2xl">Recent Activity</h2>
 
-      <h2>Recent Activity</h2>
-
-      <div className="activity-list">
-
+      <div className="flex flex-col gap-[18px]">
         {activities.map((activity, index) => (
-          <div className="activity-item" key={index}>
-
-            <div className="activity-icon">
+          <div
+            className="flex items-center gap-[18px] rounded-xl border border-slate-100 p-4 transition hover:bg-background"
+            key={index}
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-xl text-primary">
               {activity.icon}
             </div>
 
-            <div className="activity-info">
-              <h4>{activity.title}</h4>
-              <p>{activity.time}</p>
+            <div>
+              <h4 className="mb-1 text-base">{activity.title}</h4>
+              <p className="text-sm text-text-light">{activity.time}</p>
             </div>
-
           </div>
         ))}
-
       </div>
-
     </div>
   );
 };

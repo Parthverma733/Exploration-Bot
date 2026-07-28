@@ -1,4 +1,3 @@
-import "./ConfirmModal.css";
 import { FiAlertTriangle, FiX } from "react-icons/fi";
 
 const ConfirmModal = ({
@@ -11,32 +10,33 @@ const ConfirmModal = ({
   loading = false,
 }) => {
   return (
-    <div className="confirm-dialog-overlay">
-      <div className="confirm-dialog-modal">
-        <div className="confirm-dialog-header">
-          <div className="confirm-dialog-icon">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-900/45 backdrop-blur-sm">
+      <div
+        className="w-full max-w-[90%] rounded-2xl bg-white p-6 shadow-[0_20px_50px_rgba(0,0,0,0.15)] sm:w-[420px]"
+        style={{ animation: "confirm-dialog-fade 0.25s ease" }}
+      >
+        <div className="mb-5 flex items-center justify-between">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-100 text-[28px] text-amber-600">
             <FiAlertTriangle />
           </div>
 
           <button
-            className="confirm-dialog-close-btn"
+            type="button"
+            className="flex h-[38px] w-[38px] items-center justify-center rounded-lg border-0 bg-gray-100 transition-colors duration-200 hover:bg-gray-200"
             onClick={onCancel}
           >
-            <FiX />
+            <FiX className="text-lg" />
           </button>
         </div>
 
-        <h2 className="confirm-dialog-title">
-          {title}
-        </h2>
+        <h2 className="mb-3 text-2xl font-bold text-gray-900">{title}</h2>
 
-        <p className="confirm-dialog-message">
-          {message}
-        </p>
+        <p className="mb-7 leading-relaxed text-gray-500">{message}</p>
 
-        <div className="confirm-dialog-actions">
+        <div className="flex justify-end gap-3">
           <button
-            className="confirm-dialog-cancel-btn"
+            type="button"
+            className="rounded-[10px] bg-gray-100 px-[22px] py-3 text-[15px] font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-60"
             onClick={onCancel}
             disabled={loading}
           >
@@ -44,7 +44,8 @@ const ConfirmModal = ({
           </button>
 
           <button
-            className="confirm-dialog-delete-btn"
+            type="button"
+            className="rounded-[10px] bg-red-600 px-[22px] py-3 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
             onClick={onConfirm}
             disabled={loading}
           >
