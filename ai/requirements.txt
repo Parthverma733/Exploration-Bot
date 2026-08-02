@@ -1,0 +1,59 @@
+# ==========================
+# PDF Parsing (Docling)
+# ==========================
+
+docling
+transformers
+sentence-transformers
+pillow
+pypdf
+
+# ==========================
+# LangChain
+# ==========================
+
+langchain
+langchain-core
+langchain-groq
+python-dotenv
+langchain-community
+
+
+# ==========================
+# FastAPI
+# ==========================
+
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ==========================
+# Validation
+# ==========================
+
+pydantic
+
+# ==========================
+# Markdown / HTML
+# ==========================
+
+markdownify
+beautifulsoup4
+
+# Embeddings
+
+langchain-huggingface
+sentence-transformers
+torch
+
+#Vector Database
+
+langchain-chroma
+chromadb
+
+
+requests
+
+
+#LLM
+langchain_mistralai

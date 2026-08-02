@@ -108,10 +108,10 @@ class ChatController extends Controller
         // fetch ai response
         try {
 
-            $res = Http::timeout(30)
-                ->asForm()
+            $res = Http::asForm()
                 ->post('http://127.0.0.1:8001/ask/', [
                     'question' => $request->message,
+                    'user_id' => $request->user()->id,
                 ]);
 
             if (! $res->successful()) {
@@ -121,7 +121,10 @@ class ChatController extends Controller
                 ], 500);
             }
 
-            $aiResponse = $res->json('response');
+            $data = $res->json();
+
+            $aiResponse = $data['response'];
+            $sources = $data['sources'];
 
         } catch (ConnectionException $e) {
 
@@ -161,6 +164,7 @@ class ChatController extends Controller
             'success' => true,
             'message' => 'Message sent successfully.',
             'response' => $aiResponse,
+            'sources' => $sources,
         ]);
 
     }

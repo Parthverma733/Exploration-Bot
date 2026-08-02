@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\IngestionJob;
 use App\Models\Document;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use ImageKit\ImageKit;
 
@@ -42,8 +45,6 @@ class DocumentController extends Controller
                 'file' => fopen($file->getRealPath(), 'r'),
                 'fileName' => $file->getClientOriginalName(),
             ]);
-
-
             // Save document metadata
             $document = new Document;
 
@@ -55,8 +56,10 @@ class DocumentController extends Controller
             $document->mime_type = $file->getMimeType();
             $document->file_size = $file->getSize();
             $document->status = 'processing';
-
             $document->save();
+
+            //start document ingestion job
+            IngestionJob::dispatch($document);
 
             return response()->json([
                 'status' => 201,
@@ -73,6 +76,7 @@ class DocumentController extends Controller
             ], 500);
 
         }
+
     }
 
     public function index()
@@ -106,7 +110,6 @@ class DocumentController extends Controller
         ], 200);
     }
 
-
     public function destroy($id)
     {
         $document = Document::where('id', $id)
@@ -120,6 +123,9 @@ class DocumentController extends Controller
             ], 404);
         }
 
+        // -----------------------------
+        // Delete from ImageKit
+        // -----------------------------
         try {
 
             $imageKit = new ImageKit(
@@ -128,17 +134,55 @@ class DocumentController extends Controller
                 config('services.imagekit.url_endpoint')
             );
 
-            // Delete from ImageKit
             $imageKit->deleteFile($document->imagekit_file_id);
 
         } catch (\Exception $e) {
 
-            // Continue deleting database record even if cloud deletion fails
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete document from ImageKit.',
+            ], 500);
+
         }
 
-        // TODO:
-        // Call Python API to remove embeddings from ChromaDB
+        // -----------------------------
+        // Delete from Chroma (FastAPI)
+        // -----------------------------
+        try {
 
+            $res = Http::withBody(
+                json_encode([
+                    'document_id' => $document->id,
+                ]),
+                'application/json'
+            )->delete('http://127.0.0.1:8001/delete-document/');
+
+            if (! $res->successful()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to delete document embeddings.',
+                ], 500);
+            }
+
+        } catch (ConnectionException $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'AI service is currently unavailable.',
+            ], 503);
+
+        } catch (\Exception $e) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to communicate with AI service.',
+            ], 500);
+
+        }
+
+        // -----------------------------
+        // Delete MySQL record
+        // -----------------------------
         $document->delete();
 
         return response()->json([

@@ -8,6 +8,7 @@ import Documents from "../pages/Documents/Documents";
 import AIAssistant from "../pages/AIAssistant/AIAssistant";
 import Profile from "../pages/Profile/Profile";
 import Settings from "../pages/Settings/Settings";
+import PdfViewer from "../pages/SemanticSearch/PdfViewer";
 
 const AppRoutes = () => {
   return (
@@ -30,6 +31,16 @@ const AppRoutes = () => {
           <ProtectedRoute>
             <Layout>
               <AIAssistant />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/semantic-search"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <PdfViewer/>
             </Layout>
           </ProtectedRoute>
         }
