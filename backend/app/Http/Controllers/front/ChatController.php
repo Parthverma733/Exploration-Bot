@@ -107,9 +107,9 @@ class ChatController extends Controller
 
         // fetch ai response
         try {
-
+            $baseUrl = config('services.ai_service.url');
             $res = Http::asForm()
-                ->post('http://127.0.0.1:8001/ask/', [
+                ->post("{$baseUrl}/ask/", [
                     'question' => $request->message,
                     'user_id' => $request->user()->id,
                 ]);

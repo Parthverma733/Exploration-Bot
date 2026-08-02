@@ -45,4 +45,8 @@ return [
 
     ],
 
+    'ai_service' => [
+        'url' => env('AI_SERVICE_URL'),
+    ],
+
 ];

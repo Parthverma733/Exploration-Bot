@@ -149,13 +149,13 @@ class DocumentController extends Controller
         // Delete from Chroma (FastAPI)
         // -----------------------------
         try {
-
+            $baseUrl = config('services.ai_service.url');
             $res = Http::withBody(
                 json_encode([
                     'document_id' => $document->id,
                 ]),
                 'application/json'
-            )->delete('http://127.0.0.1:8001/delete-document/');
+            )->delete("{$baseUrl}/delete-document/");
 
             if (! $res->successful()) {
                 return response()->json([

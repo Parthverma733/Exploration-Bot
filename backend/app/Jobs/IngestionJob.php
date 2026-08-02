@@ -41,9 +41,10 @@ class IngestionJob implements ShouldQueue
         ]);
 
         try {
+            $baseUrl = config('services.ai_service.url');
 
             $res = Http::timeout(1800)
-            ->post('http://127.0.0.1:8001/ingest/', [
+            ->post("{$baseUrl}/ingest/", [
                 'file_url' => $this->document->file_path,
                 'user_id' => $this->document->user_id,
                 'document_id' => $this->document->id,
